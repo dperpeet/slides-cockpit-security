@@ -445,6 +445,13 @@ websm           9090/udp                # WebSM</pre>
         <section>
             <p>You can proxy <span class="comment">cockpit-ws</span>, via HTTP or SSH<br>
             <a href="https://github.com/cockpit-project/cockpit/wiki/Proxying-Cockpit-over-NGINX">https://github.com/cockpit-project/cockpit/wiki/Proxying-Cockpit-over-NGINX</a></p>
+
+            <aside class="notes">
+                <p>(Since version 200, August 2019) Cockpit even ships its own reverse proxy: cockpit-tls.
+                This separates the TLS termination and client-side certificate checking from the HTTP
+                data interpretation in cockpit-ws, so that even in the event of a vulnerability in cockpit-ws,
+                the TLS authentication cannot be tampered with.</p>
+            </aside>
         </section>
 
     </section>
@@ -459,6 +466,13 @@ websm           9090/udp                # WebSM</pre>
             </ul>
         </div>
         <aside class="notes">
+            <p>Cockpit can be configured to use other authentication mechanisms than the standard UNIX user/password.
+            We have supported Kerberos-based single-sign on for a long time, and will soon add Smart Card authentication,
+            which essentially is client-side TLS certificates.</p>
+
+            <p>All these are done with proper privilege separation that matches the security architecture on the command
+            line.</p>
+
             <p>But suffice it to say, that Cockpit’s security is well thought out,
             layered and matches that of Linux in general.</p>
         </aside>
